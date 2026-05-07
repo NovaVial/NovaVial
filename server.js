@@ -29,7 +29,22 @@ const contentTypes = {
   ".svg": "image/svg+xml",
 };
 
-const products = JSON.parse(await fs.readFile(join(dataDir, "products.json"), "utf8"));
+const defaultProducts = [
+  { id: "adipotide", name: "Adipotide", wasCents: 7499, priceCents: 5999, sku: "NV-104" },
+  { id: "bac-water", name: "BAC Water", wasCents: 1499, priceCents: 999, sku: "NV-105" },
+  { id: "bpc-157", name: "BPC-157", wasCents: 6499, priceCents: 4999, sku: "NV-106" },
+  { id: "cjc-1295-w-dac", name: "CJC-1295 w/ DAC", wasCents: 7499, priceCents: 5999, sku: "NV-107" },
+  { id: "cjc-ipa", name: "CJC / IPA", wasCents: 8499, priceCents: 6999, sku: "NV-108" },
+  { id: "dsip", name: "DSIP", wasCents: 3499, priceCents: 2999, sku: "NV-109" },
+  { id: "ghk-cu", name: "GHK-Cu", wasCents: 5499, priceCents: 4499, sku: "NV-110" },
+  { id: "glow-blend", name: "GLOW Blend", wasCents: 12499, priceCents: 9999, sku: "NV-111" },
+  { id: "glp-1-sm", name: "GLP-1 SM", wasCents: 6999, priceCents: 5499, sku: "NV-112" },
+  { id: "glp-2-tz", name: "GLP-2 TZ", wasCents: 7499, priceCents: 5999, sku: "NV-113" },
+  { id: "glp-3-rt", name: "GLP-3 RT", wasCents: 8499, priceCents: 6999, sku: "NV-114" },
+  { id: "igf-1-lr3", name: "IGF-1 LR3", wasCents: 7999, priceCents: 5999, sku: "NV-115" },
+];
+
+const products = await loadProducts();
 const productById = new Map(products.map((product) => [product.id, product]));
 validateProducts(products);
 
@@ -213,6 +228,22 @@ function getMissingSquareConfig() {
     "SQUARE_APPLICATION_ID",
     "SQUARE_LOCATION_ID",
   ].filter((key) => !process.env[key]);
+}
+
+async function loadProducts() {
+  const productsPath = join(dataDir, "products.json");
+
+  try {
+    return JSON.parse(await fs.readFile(productsPath, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") {
+      throw error;
+    }
+
+    await fs.mkdir(dataDir, { recursive: true });
+    await fs.writeFile(productsPath, `${JSON.stringify(defaultProducts, null, 2)}\n`);
+    return defaultProducts;
+  }
 }
 
 function validateProducts(productList) {
