@@ -1,0 +1,14 @@
+{
+  "name": "novavial-research-store",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node --check server.js && node tests/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

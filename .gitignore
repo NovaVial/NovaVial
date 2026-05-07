@@ -1,0 +1,5 @@
+.env
+data/orders.json
+data/square-events.json
+node_modules/
+.DS_Store

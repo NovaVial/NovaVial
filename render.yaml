@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: novavial-research-store
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SQUARE_ENVIRONMENT
+        value: sandbox
+      - key: SQUARE_VERSION
+        value: 2026-01-22
+      - key: STORE_CURRENCY
+        value: USD
+      - key: SQUARE_ACCESS_TOKEN
+        sync: false
+      - key: SQUARE_APPLICATION_ID
+        sync: false
+      - key: SQUARE_LOCATION_ID
+        sync: false
+      - key: SQUARE_WEBHOOK_SIGNATURE_KEY
+        sync: false
