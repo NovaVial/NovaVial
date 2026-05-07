@@ -36,6 +36,10 @@ try {
   assert.equal(home.status, 200);
   assert.match(await home.text(), /NovaVial Research/);
 
+  const storeScript = await fetch(`${baseUrl}/scripts/store.js`);
+  assert.equal(storeScript.status, 200);
+  assert.match(await storeScript.text(), /bootStore/);
+
   const policy = await fetch(`${baseUrl}/shipping.html`);
   assert.equal(policy.status, 200);
   assert.match(await policy.text(), /Shipping Policy/);
