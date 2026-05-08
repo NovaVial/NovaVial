@@ -35,6 +35,11 @@ try {
   const home = await fetch(`${baseUrl}/`);
   assert.equal(home.status, 200);
   assert.match(await home.text(), /NovaVial Research/);
+  assert.match(await (await fetch(`${baseUrl}/`)).text(), /href="\/catalog.html">Shop Catalog/);
+
+  const catalog = await fetch(`${baseUrl}/catalog.html`);
+  assert.equal(catalog.status, 200);
+  assert.match(await catalog.text(), /Product catalog/);
 
   const storeScript = await fetch(`${baseUrl}/scripts/store.js`);
   assert.equal(storeScript.status, 200);
