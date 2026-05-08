@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalog | NovaVial Research</title>
+    <meta
+      name="description"
+      content="Shop the NovaVial Research catalog of research-use analytical supply products."
+    />
+    <style>
+      :root {
+        --ink: #0f172a;
+        --muted: #526071;
+        --line: #d8e0e8;
+        --panel: #ffffff;
+        --soft: #f5f8fa;
+        --cyan: #087c8f;
+        --cyan-deep: #075b6d;
+        --teal-soft: #d9f4f3;
+        --mint: #2f8c6b;
+        --shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      svg {
+        display: block;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .announcement {
+        background: var(--ink);
+        color: #d6fbff;
+        padding: 0.6rem 1rem;
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(16px);
+      }
+
+      .header-inner,
+      .catalog,
+      .section-inner {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .header-inner {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        flex: 0 0 auto;
+        place-items: center;
+        border-radius: var(--radius);
+        background: var(--ink);
+        color: #c9fbff;
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+      }
+
+      .brand-name {
+        display: block;
+        font-size: 1.18rem;
+        font-weight: 900;
+        line-height: 1.05;
+      }
+
+      .brand-kicker {
+        display: block;
+        margin-top: 0.18rem;
+        color: #637286;
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .main-nav,
+      .header-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .main-nav {
+        gap: 2rem;
+        color: #344255;
+        font-size: 0.91rem;
+        font-weight: 750;
+      }
+
+      .main-nav a:hover {
+        color: var(--cyan);
+      }
+
+      .header-actions {
+        gap: 0.45rem;
+      }
+
+      .icon-button {
+        display: inline-grid;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: transparent;
+        color: #3c4858;
+        cursor: pointer;
+      }
+
+      .icon-button:hover {
+        border-color: var(--line);
+        background: var(--soft);
+        color: var(--cyan-deep);
+      }
+
+      .cart-button {
+        position: relative;
+      }
+
+      .cart-count {
+        position: absolute;
+        right: 1px;
+        top: 1px;
+        display: grid;
+        width: 17px;
+        height: 17px;
+        place-items: center;
+        border-radius: 999px;
+        background: var(--cyan);
+        color: #ffffff;
+        font-size: 0.62rem;
+        font-weight: 900;
+      }
+
+      .menu-button {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: none;
+        border-top: 1px solid var(--line);
+        padding: 0.85rem 1.5rem 1.2rem;
+        background: #ffffff;
+      }
+
+      .mobile-nav.open {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .mobile-nav a {
+        font-weight: 800;
+      }
+
+      .catalog-hero {
+        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.8)),
+          url("hero-vials.png");
+        background-position: center;
+        background-size: cover;
+      }
+
+      .catalog-hero-inner {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 4rem 0 4.4rem;
+      }
+
+      .eyebrow {
+        margin: 0 0 1rem;
+        color: var(--cyan-deep);
+        font-size: 0.82rem;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 12ch;
+        color: #08111f;
+        font-size: clamp(3rem, 8vw, 6.4rem);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      .catalog-hero p:not(.eyebrow) {
+        max-width: 570px;
+        margin: 1.3rem 0 0;
+        color: #334156;
+        font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+        line-height: 1.75;
+      }
+
+      .catalog {
+        padding: 3rem 0 4.5rem;
+      }
+
+      .catalog-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-bottom: 1.7rem;
+      }
+
+      .catalog-head h2 {
+        margin: 0.3rem 0 0;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .search-field {
+        position: relative;
+        width: min(100%, 410px);
+      }
+
+      .search-field svg {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        color: #8090a4;
+        transform: translateY(-50%);
+      }
+
+      .search-field input {
+        width: 100%;
+        height: 48px;
+        border: 1px solid #b9c5d2;
+        border-radius: 999px;
+        padding: 0 1rem 0 3rem;
+        color: var(--ink);
+        outline: none;
+      }
+
+      .search-field input:focus {
+        border-color: var(--cyan);
+        box-shadow: 0 0 0 4px rgba(8, 124, 143, 0.15);
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+
+      .product-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+        transition:
+          transform 160ms ease,
+          box-shadow 160ms ease,
+          border-color 160ms ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        border-color: #a5d9dd;
+        box-shadow: var(--shadow);
+      }
+
+      .sale-badge {
+        position: absolute;
+        left: 0.85rem;
+        top: 0.85rem;
+        z-index: 1;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #ffffff;
+        padding: 0.32rem 0.58rem;
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .product-art {
+        display: grid;
+        aspect-ratio: 1 / 1;
+        place-items: center;
+        background:
+          radial-gradient(circle at 50% 64%, rgba(8, 124, 143, 0.11), transparent 42%),
+          linear-gradient(135deg, #f7fafc, #ffffff 48%, #e7f8f7);
+      }
+
+      .vial {
+        position: relative;
+        width: 92px;
+        height: 142px;
+        border: 1px solid #9ed6dc;
+        border-radius: 16px 16px 28px 28px;
+        background:
+          linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(226, 252, 253, 0.5) 48%, rgba(255, 255, 255, 0.8)),
+          linear-gradient(180deg, transparent 35%, rgba(91, 198, 205, 0.2) 35%);
+        box-shadow:
+          inset 12px 0 18px rgba(255, 255, 255, 0.85),
+          inset -12px 0 18px rgba(8, 124, 143, 0.08),
+          0 18px 28px rgba(15, 23, 42, 0.11);
+      }
+
+      .vial::before {
+        content: "";
+        position: absolute;
+        left: 16px;
+        top: -23px;
+        width: 58px;
+        height: 24px;
+        border: 1px solid #aab6c3;
+        border-radius: 7px 7px 3px 3px;
+        background: linear-gradient(180deg, #f8fafc, #dce4eb);
+      }
+
+      .vial::after {
+        content: "";
+        position: absolute;
+        left: 22px;
+        right: 22px;
+        top: 58px;
+        height: 52px;
+        border-radius: 999px;
+        background: rgba(102, 210, 216, 0.28);
+        filter: blur(7px);
+      }
+
+      .lot {
+        position: absolute;
+        left: 50%;
+        bottom: 15px;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        background: var(--ink);
+        color: #ffffff;
+        padding: 0.32rem 0.5rem;
+        font-size: 0.65rem;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+
+      .flask-line {
+        position: absolute;
+        left: 50%;
+        top: 41%;
+        color: var(--cyan-deep);
+        opacity: 0.82;
+        transform: translate(-50%, -50%);
+      }
+
+      .product-body {
+        display: grid;
+        gap: 0.8rem;
+        padding: 1.05rem;
+        text-align: center;
+      }
+
+      .product-body h3 {
+        min-height: 2.7em;
+        margin: 0;
+        font-size: 1.04rem;
+        line-height: 1.32;
+      }
+
+      .price-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.7rem;
+      }
+
+      .was {
+        color: #8896a8;
+        font-size: 0.88rem;
+        text-decoration: line-through;
+      }
+
+      .now {
+        font-size: 1.13rem;
+        font-weight: 950;
+      }
+
+      .product-button {
+        width: 100%;
+        min-height: 42px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--ink);
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: 850;
+      }
+
+      .product-button:hover {
+        background: var(--cyan-deep);
+      }
+
+      .empty-state {
+        display: none;
+        border: 1px dashed #a7b4c2;
+        border-radius: var(--radius);
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .empty-state.visible {
+        display: block;
+      }
+
+      .checkout-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: none;
+        background: rgba(15, 23, 42, 0.46);
+      }
+
+      .checkout-overlay.open {
+        display: block;
+      }
+
+      .checkout-drawer {
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 90;
+        display: grid;
+        width: min(100%, 480px);
+        height: 100vh;
+        grid-template-rows: auto 1fr;
+        background: #ffffff;
+        box-shadow: -18px 0 45px rgba(15, 23, 42, 0.22);
+        transform: translateX(100%);
+        transition: transform 180ms ease;
+      }
+
+      .checkout-drawer.open {
+        transform: translateX(0);
+      }
+
+      .checkout-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        border-bottom: 1px solid var(--line);
+        padding: 1rem 1.2rem;
+      }
+
+      .checkout-head h2 {
+        margin: 0;
+        font-size: 1.18rem;
+      }
+
+      .checkout-body {
+        overflow: auto;
+        padding: 1.2rem;
+      }
+
+      .cart-items {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .cart-line {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.7rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0.85rem;
+      }
+
+      .cart-line strong {
+        display: block;
+        margin-bottom: 0.24rem;
+      }
+
+      .cart-line span,
+      .checkout-note {
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.5;
+      }
+
+      .quantity-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+      }
+
+      .quantity-controls button {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #ffffff;
+        cursor: pointer;
+        font-weight: 900;
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        margin: 1rem 0;
+        border-top: 1px solid var(--line);
+        padding-top: 1rem;
+        font-size: 1.05rem;
+      }
+
+      .checkout-form {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .checkout-form label {
+        display: grid;
+        gap: 0.34rem;
+        color: #344255;
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .checkout-form input {
+        min-height: 42px;
+        border: 1px solid #b9c5d2;
+        border-radius: var(--radius);
+        padding: 0 0.75rem;
+        outline: none;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 0.7fr 0.8fr;
+        gap: 0.7rem;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 0.76rem 1.15rem;
+        font-size: 0.92rem;
+        font-weight: 850;
+      }
+
+      .button-primary {
+        background: var(--ink);
+        color: #ffffff;
+      }
+
+      .square-card {
+        min-height: 90px;
+        margin-top: 0.5rem;
+      }
+
+      .status-message {
+        min-height: 1.3rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .status-message.error {
+        color: #b42318;
+      }
+
+      .status-message.success {
+        color: var(--mint);
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        padding: 1.5rem 0;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .footer-inner strong {
+        color: var(--ink);
+      }
+
+      .footer-inner a {
+        color: var(--cyan-deep);
+        font-weight: 850;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
+      @media (max-width: 980px) {
+        .product-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 780px) {
+        .main-nav,
+        .header-actions {
+          display: none;
+        }
+
+        .menu-button {
+          display: inline-grid;
+        }
+
+        .catalog-head {
+          display: grid;
+          align-items: start;
+        }
+
+        .search-field {
+          width: 100%;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 520px) {
+        .header-inner,
+        .section-inner,
+        .catalog,
+        .catalog-hero-inner {
+          width: min(100% - 24px, 1180px);
+        }
+
+        .brand-name {
+          font-size: 1rem;
+        }
+
+        .brand-kicker {
+          font-size: 0.59rem;
+        }
+
+        .brand-mark {
+          width: 38px;
+          height: 38px;
+        }
+
+        .product-grid,
+        .field-row,
+        .footer-inner {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="announcement">Free shipping on research orders $200+</div>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="NovaVial Research home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 2h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              <path d="M10 2v6.5L5.4 17A3.3 3.3 0 0 0 8.3 22h7.4a3.3 3.3 0 0 0 2.9-5L14 8.5V2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M8.3 15h7.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </span>
+          <span>
+            <span class="brand-name">NovaVial Research</span>
+            <span class="brand-kicker">Analytical Supply</span>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="/">Home</a>
+          <a href="/catalog.html">Catalog</a>
+          <a href="/#research">Research</a>
+          <a href="/#contact">Contact</a>
+        </nav>
+
+        <div class="header-actions" aria-label="Account actions">
+          <button class="icon-button" type="button" aria-label="Search catalog">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <button class="icon-button" type="button" aria-label="Account">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </button>
+          <button class="icon-button cart-button" id="cartButton" type="button" aria-label="Cart">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <path d="M6 6h15l-1.5 8H8L6 3H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="9" cy="20" r="1.4" fill="currentColor" />
+              <circle cx="18" cy="20" r="1.4" fill="currentColor" />
+            </svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+        </div>
+
+        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <a href="/">Home</a>
+        <a href="/catalog.html">Catalog</a>
+        <a href="/#research">Research</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="catalog-hero" aria-labelledby="catalog-page-title">
+        <div class="catalog-hero-inner">
+          <p class="eyebrow">Research catalog</p>
+          <h1 id="catalog-page-title">Shop Catalog</h1>
+          <p>
+            Browse current sale pricing across NovaVial Research analytical supply products.
+            Product names, lot codes, and checkout totals are loaded from the backend catalog.
+          </p>
+        </div>
+      </section>
+
+      <section class="catalog" id="catalog" aria-labelledby="catalog-title">
+        <div class="catalog-head">
+          <div>
+            <p class="eyebrow">Current sale</p>
+            <h2 id="catalog-title">Product catalog</h2>
+          </div>
+          <label class="search-field">
+            <span class="sr-only">Search products</span>
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" />
+            </svg>
+            <input id="searchInput" type="search" placeholder="Search products" autocomplete="off" />
+          </label>
+        </div>
+        <div class="product-grid" id="productGrid"></div>
+        <div class="empty-state" id="emptyState">
+          <strong>No products found.</strong>
+          <p>Try a different search term.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div class="section-inner footer-inner">
+        <strong>NovaVial Research</strong>
+        <span>For research use only. Not for human or veterinary use.</span>
+        <a href="/shipping.html">Shipping</a>
+        <a href="/returns.html">Returns</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:research@example.com">research@example.com</a>
+      </div>
+    </footer>
+
+    <div class="checkout-overlay" id="checkoutOverlay"></div>
+    <aside class="checkout-drawer" id="checkoutDrawer" aria-label="Checkout" aria-hidden="true">
+      <div class="checkout-head">
+        <h2>Checkout</h2>
+        <button class="icon-button" id="closeCheckout" type="button" aria-label="Close checkout">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <div class="checkout-body">
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-total">
+          <strong>Total</strong>
+          <strong id="cartTotal">$0.00</strong>
+        </div>
+
+        <form class="checkout-form" id="checkoutForm">
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Name
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label>
+            Company
+            <input name="company" type="text" autocomplete="organization" />
+          </label>
+          <label>
+            Shipping Address
+            <input name="address" type="text" autocomplete="shipping street-address" required />
+          </label>
+          <div class="field-row">
+            <label>
+              City
+              <input name="city" type="text" autocomplete="shipping address-level2" required />
+            </label>
+            <label>
+              State
+              <input name="state" type="text" autocomplete="shipping address-level1" required />
+            </label>
+            <label>
+              ZIP
+              <input name="postalCode" type="text" autocomplete="shipping postal-code" required />
+            </label>
+          </div>
+          <div id="cardContainer" class="square-card"></div>
+          <button class="button button-primary" id="payButton" type="submit">Pay with Square</button>
+          <div class="status-message" id="paymentStatus" role="status"></div>
+        </form>
+
+        <p class="checkout-note">
+          Test mode uses Square sandbox credentials. Bank payout details are configured inside
+          Square Dashboard, not in this website code.
+        </p>
+      </div>
+    </aside>
+
+    <script src="/scripts/store.js" defer></script>
+  </body>
+</html>
